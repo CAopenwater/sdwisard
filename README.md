@@ -1,4 +1,5 @@
-# sdwisard
+# sdwisard 🧙💧🧪
+
 Query tool for SDWIS (Safe Drinking Water Information System)
 
 ## Query functions
@@ -22,5 +23,4 @@ sdwisard::query_psid(psid, start_date, end_date, analytes) %>%
   filter(analyte == “PFAS”) %>%
   ggplot(ase(time, value)) %>%
   geom_line() 
-
 ```
