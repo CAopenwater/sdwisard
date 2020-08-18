@@ -7,6 +7,7 @@ get_water_system <- function(...) {
 
   arg <- list(...)
   if (length(arg) == 0) stop("supply either a zipcode or county", call. = FALSE)
+  if (is.null(names(arg))) stop("supply named argument", call. = FALSE)
   if (length(arg) > 1) stop("supply only zipcode or county", call. = FALSE)
 
   if (names(arg) == "zipcode") {
