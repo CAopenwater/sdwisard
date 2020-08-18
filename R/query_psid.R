@@ -5,7 +5,7 @@
 #' @param start_date The starting date for queried results.
 #' @param end_date The end date for queried results.
 #' @param analytes A vector of analytes to return.
-#' @return A tibble of analyte results for the input PSID and given dates.
+#' @return A data.table of analyte results for the input PSID and given dates.
 #' @examples
 #' d <- query_psid("103039")
 #' head(d)
@@ -19,22 +19,23 @@
 #'   geom_smooth()
 
 
+
 query_psid <- function(psid, start_date = NULL, end_date = NULL, analytes = NULL) {
   if(!is.numeric(psid) & !is.character(psid)) {
     stop("Argument `psid` must be of class `numeric` or `character`. To view a psid lookup table, see the built-in object `psid_df`.")
   }
-  url = paste0('https://sdwis.s3.us-west-1.amazonaws.com/', psid, '.csv')
-  d   = read_csv(url)
+  url = paste0('https://sdwis.s3.us-west-1.amazonaws.com/', psid, '.csv.gz')
+  d   = data.table::fread(url)
 
   # if present, filter by state and end dates and analytes
   if(!is.null(start_date)){
-    d <- filter(d, SAMP_DATE >= start_date)
+    d <- dplyr::filter(d, SAMP_DATE >= start_date)
   }
   if(!is.null(end_date)){
-    d <- filter(d, SAMP_DATE <= end_date)
+    d <- dplyr::filter(d, SAMP_DATE <= end_date)
   }
   if(!is.null(analytes)){
-    d <- filter(d, CHEMICAL %in% analytes)
+    d <- dplyr::filter(d, CHEMICAL %in% analytes)
   }
   return(d)
 }
