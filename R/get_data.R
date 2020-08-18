@@ -7,10 +7,10 @@
 #' @param analytes A vector of analytes to return.
 #' @return A data.table of analyte results for the input PSID and given dates.
 #' @examples
-#' d <- query_psid("103039")
+#' d <- get_data("103039")
 #' head(d)
 #'
-#' query_psid(
+#' get_data(
 #'   psid    = "110001",
 #'   analyte = "NITRATE + NITRITE (AS N)"
 #' ) %>%
@@ -19,10 +19,16 @@
 #'   geom_smooth()
 
 
+get_data <- function(psid, start_date = NULL, end_date = NULL, analyte = NULL) {
 
-query_psid <- function(psid, start_date = NULL, end_date = NULL, analytes = NULL) {
+  if(! (analyte %in% dplyr::pull(dplyr::filter(psid_analyte, psid == psid), analyte))){
+    stop(paste("The requested analyte", analyte, "is not found for the input psid", psid),
+         call. = FALSE)
+  }
+
   if(!is.numeric(psid) & !is.character(psid)) {
-    stop("Argument `psid` must be of class `numeric` or `character`. To view a psid lookup table, see the built-in object `psid_df`.")
+    stop("Argument `psid` must be of class `numeric` or `character`. To view a psid lookup table, see the built-in object `psid_df`.",
+         call. = FALSE)
   }
   url = paste0('https://sdwis.s3.us-west-1.amazonaws.com/', psid, '.csv.gz')
   d   = data.table::fread(url)
