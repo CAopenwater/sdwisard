@@ -10,10 +10,17 @@ get_water_system <- function(...) {
   if (length(arg) > 1) stop("supply only zipcode or county", call. = FALSE)
 
   if (names(arg) == "zipcode") {
-    water_systems[water_systems$zipcode == arg$zipcode, ]$water_system_name
+    water_system <- water_systems[water_systems$zipcode == arg$zipcode, ]$water_system_name
   } else if (names(arg) == "county"){
-    water_systems[water_systems$county == arg$county, ]$water_system_name
+    water_system <-water_systems[water_systems$county == arg$county, ]$water_system_name
   }
+
+  if (!length(water_system)) {
+    warning(paste(names(arg), arg[[1]], "was not found"), call. = FALSE)
+    water_system <- NA
+  }
+
+  water_system
 }
 
 get_analyte_summary <- function(psid) {

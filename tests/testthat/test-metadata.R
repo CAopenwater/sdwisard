@@ -13,3 +13,13 @@ test_that("Returns water system when supplied zipcode", {
 test_that("Returns water system when supplied county", {
   expect_equal(get_water_system(county = "E"), "B")
 })
+
+test_that("Graceful return for non-existent zipcode", {
+  expect_true(is.na(suppressWarnings(get_water_system(zipcode = 123))))
+  expect_warning(get_water_system(zipcode = 123), "zipcode 123 was not found")
+})
+
+test_that("Graceful return for non-existent county", {
+  expect_true(is.na(suppressWarnings(get_water_system(county = "Mars"))))
+  expect_warning(get_water_system(county = "Mars"), "county Mars was not found")
+})
