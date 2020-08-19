@@ -11,8 +11,8 @@ get_water_system <- function(...) {
 
   if (names(arg) == "zipcode") {
     water_system <- water_systems[water_systems$zipcode == arg$zipcode, ]$water_system_name
-  } else if (names(arg) == "county"){
-    water_system <-water_systems[water_systems$county == arg$county, ]$water_system_name
+  } else if (names(arg) == "county") {
+    water_system <- water_systems[water_systems$county == arg$county, ]$water_system_name
   }
 
   if (!length(water_system)) {
