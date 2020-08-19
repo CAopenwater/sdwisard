@@ -1,3 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^data-raw$
+^LICENSE\.md$
+^vignettes/getting_started-Rmd\.Rmd$
