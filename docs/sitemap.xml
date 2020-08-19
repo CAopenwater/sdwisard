@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://CAopenwater.github.io/cvpiaFlow//index.html</loc>
+  </url>
+  <url>
+    <loc>https://CAopenwater.github.io/cvpiaFlow//reference/get_analyte_summary.html</loc>
+  </url>
+  <url>
+    <loc>https://CAopenwater.github.io/cvpiaFlow//reference/get_data.html</loc>
+  </url>
+  <url>
+    <loc>https://CAopenwater.github.io/cvpiaFlow//reference/get_storet_id.html</loc>
+  </url>
+  <url>
+    <loc>https://CAopenwater.github.io/cvpiaFlow//reference/get_water_system.html</loc>
+  </url>
+  <url>
+    <loc>https://CAopenwater.github.io/cvpiaFlow//articles/getting-started.html</loc>
+  </url>
+</urlset>

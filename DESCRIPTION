@@ -8,7 +8,7 @@ Authors@R: c(
     person("Rich", "Pauloo", email = "richpauloo@gmail.com", role = c("aut")))
 Description: This package was developed as an entry to the CA Water Data Challenge 2020. 
     It demonstrates the utility of easy to use API wrappers to empower analysts 
-    to get more done with data with less effort. Currently the SDWIS database is hard 
+    to get more done with data with less effort. Currently the SDWIS database is inconvenient 
     to query and there is no public facing API. This wrapper grabs data hosted in an 
     AWS s3 bucket so we can pretend there is already the infrastructure to support 
     this type of development. 
@@ -20,5 +20,6 @@ Imports:
     dplyr,
     data.table
 Suggests: 
-    testthat
+    testthat,
+    rmarkdown
 URL: https://caopenwater.github.io/sdwisard/
