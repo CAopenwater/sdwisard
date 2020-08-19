@@ -38,6 +38,7 @@ get_water_system <- function(...) {
 get_analyte_summary <- function(psid) {
 
   summary <- psid_analyte[psid_analyte$psid == psid, ]
+
   if (nrow(summary) == 0) {
     stop(paste("the psid", psid, "is invalid"), call. = FALSE)
   }
@@ -46,7 +47,22 @@ get_analyte_summary <- function(psid) {
 
 }
 
-get_storet <- function(analyte){
+#' Get Storet ID
+#' @description Helps users obtain the appropriate storet ID for a given analyte
+#' @param analyte common name of chemical
+#' @examples
+#' get_storet_id("c")
+#' get_storet_id("Color")
+#' get_storet_id("COLOR")
+#' @export
+get_storet_id <- function(analyte) {
+
+  storets <- analytes[grep(analyte, analytes$analyte, ignore.case = TRUE), ]
+
+  if (nrow(storets) == 0) {
+    stop(paste("There are no storet IDs associated with the analyte", analyte), call. = FALSE)
+  }
+
+  storets
 
 }
-

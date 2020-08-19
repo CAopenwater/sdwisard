@@ -44,3 +44,13 @@ test_that("Returns summary for a provided psid",  {
                  n = c(1L, 1L, 1L, 1L, 1L)),
                  row.names = c(NA, 5L), class = "data.frame"))}
 )
+
+test_that("Errors when analyte returns no results", {
+  expect_error(get_storet_id("bubblegum"), "There are no storet IDs associated with the analyte bubblegum")
+})
+
+test_that("Returns possible storet ids given an analyte search term", {
+  expect_equal(get_storet_id("COLOR"),
+               structure(list(storet = "00081", analyte = "COLOR"),
+                         row.names = 1L, class = "data.frame"))
+})
