@@ -26,7 +26,7 @@ sdwisard::water_systems
 # data.frame of colnames = c(storet, analytes)
 sdwisard::analytes 
 
-# internal of colnames = c(psid, storet, analyte)
+# internal of colnames = c(psid, storet, analyte, start_date, end_date, n))
 sdwisard::psid_analyte
 ```
 
