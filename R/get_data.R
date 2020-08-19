@@ -39,17 +39,17 @@ get_data <- function(psid, start_date = NULL, end_date = NULL, analyte = NULL) {
   }
 
   url = paste0('https://sdwis.s3.us-west-1.amazonaws.com/', psid, '.csv.gz')
-  d   = data.table::fread(url)
+  s3_dat = data.table::fread(url)
 
   # if present, filter by start and end dates and analytes
   if(!is.null(start_date)){
-    d <- d[d$SAMP_DATE >= start_date, ]
+    s3_dat <- s3_dat[s3_dat$SAMP_DATE >= start_date, ]
   }
   if(!is.null(end_date)){
-    d <- d[d$SAMP_DATE <= end_date, ]
+    s3_dat <- s3_dat[s3_dat$SAMP_DATE <= end_date, ]
   }
   if(!is.null(analyte)){
-    d <- d[d$CHEMICAL == analyte, ]
+    s3_dat <- s3_dat[s3_dat$CHEMICAL == analyte, ]
   }
-  return(d)
+  return(s3_dat)
 }
