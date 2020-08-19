@@ -4,16 +4,16 @@
 \alias{get_data}
 \title{Query SDWIS by PSID}
 \usage{
-get_data(psid, start_date = NULL, end_date = NULL, analyte = NULL)
+get_data(psid = NULL, analyte = NULL, start_date = NULL, end_date = NULL)
 }
 \arguments{
 \item{psid}{The public water system ID to be queried.}
 
+\item{analyte}{A single analyte to return.}
+
 \item{start_date}{The starting date for queried results.}
 
 \item{end_date}{The end date for queried results.}
-
-\item{analyte}{A single analyte to return.}
 }
 \value{
 A data.table of analyte results for the input PSID and date range.
