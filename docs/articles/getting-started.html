@@ -83,17 +83,17 @@
     
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sdwisard)</a></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># returns psid and water system name for a given zipcode</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">sdwisard<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/sdwisard/topics/get_water_system">get_water_system</a></span>(<span class="dt">zipcode =</span> <span class="dv">90210</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">sdwisard<span class="op">::</span><span class="kw"><a href="https://CAopenwater.github.io/cvpiaFlow//reference/get_water_system.html">get_water_system</a></span>(<span class="dt">zipcode =</span> <span class="dv">90210</span>)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; Warning: zipcode 90210 was not found</span></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; [1] NA</span></a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co"># returns psid and water system name for a given county</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">sdwisard<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/sdwisard/topics/get_water_system">get_water_system</a></span>(<span class="dt">county =</span> <span class="st">"Alameda"</span>)</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">sdwisard<span class="op">::</span><span class="kw"><a href="https://CAopenwater.github.io/cvpiaFlow//reference/get_water_system.html">get_water_system</a></span>(<span class="dt">county =</span> <span class="st">"Alameda"</span>)</a>
 <a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; Warning: county Alameda was not found</span></a>
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; [1] NA</span></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co"># returns summary of analytes available for a water system</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">sdwisard<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/sdwisard/topics/get_analyte_summary">get_analyte_summary</a></span>(<span class="dt">psid =</span> <span class="st">"103039"</span>)</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">sdwisard<span class="op">::</span><span class="kw"><a href="https://CAopenwater.github.io/cvpiaFlow//reference/get_analyte_summary.html">get_analyte_summary</a></span>(<span class="dt">psid =</span> <span class="st">"103039"</span>)</a>
 <a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;     psid storet               analyte start_date   end_date n</span></a>
 <a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; 1 103039  00081                 COLOR 2017-11-22 2017-11-22 1</span></a>
 <a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; 2 103039  00086 ODOR THRESHOLD @ 60 C 2017-11-22 2017-11-22 1</span></a>
@@ -102,7 +102,7 @@
 <a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt; 5 103039  00618        NITRATE (AS N) 2017-11-22 2017-11-22 1</span></a>
 <a class="sourceLine" id="cb2-19" data-line-number="19"></a>
 <a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co"># returns summarised df of analytes, and date range</span></a>
-<a class="sourceLine" id="cb2-21" data-line-number="21">sdwisard<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/sdwisard/topics/get_storet_id">get_storet_id</a></span>(<span class="st">"COLOR"</span>)</a>
+<a class="sourceLine" id="cb2-21" data-line-number="21">sdwisard<span class="op">::</span><span class="kw"><a href="https://CAopenwater.github.io/cvpiaFlow//reference/get_storet_id.html">get_storet_id</a></span>(<span class="st">"COLOR"</span>)</a>
 <a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt;   storet analyte</span></a>
 <a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt; 1  00081   COLOR</span></a></code></pre></div>
   </div>
