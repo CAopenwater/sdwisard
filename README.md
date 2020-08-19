@@ -23,10 +23,10 @@ sdwisard::get_data(psid, start_date, end_date, analytes)
 # data.frame of colnames = c(psid, water_system_name, county, zipcode)
 sdwisard::water_systems
 
-# data.frame of colnames = c(storet, analytes)
+# data.frame of colnames = c(storet, analyte)
 sdwisard::analytes 
 
-# internal of colnames = c(psid, storet, analyte)
+# internal of colnames = c(psid, storet, analyte, start_date, end_date, n)
 sdwisard::psid_analyte
 ```
 
