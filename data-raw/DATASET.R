@@ -24,7 +24,8 @@ psid_analyte <- purrr::map2_df(
   summarise(start_date = min(SAMP_DATE), end_date = max(SAMP_DATE), n = n()) %>%
   mutate(psid = .y)
   ) %>%
-  select(psid, storet = STORE_NUM, analyte = CHEMICAL, start_date, end_date, n)
-
+  select(psid, storet = STORE_NUM, analyte = CHEMICAL, start_date, end_date, n) %>%
+  ungroup() %>%
+  as.data.frame()
 
 usethis::use_data(psid_analyte, overwrite = TRUE)
