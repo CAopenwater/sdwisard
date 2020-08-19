@@ -10,19 +10,19 @@
 #' d <- get_data("103039")
 #' head(d)
 #'
-# get_data(
-#   psid    = "110001",
-#   analyte = "NITRATE + NITRITE (AS N)"
-# ) %>%
-# ggplot(aes(SAMP_DATE, FINDING)) +
-#   geom_point() +
-#   geom_smooth()
+#' get_data(
+#'   psid    = "110001",
+#'   analyte = "NITRATE + NITRITE (AS N)"
+#' ) %>%
+#' ggplot(aes(SAMP_DATE, FINDING)) +
+#'   geom_point() +
+#'   geom_smooth()
 
 
 get_data <- function(psid, start_date = NULL, end_date = NULL, analyte = NULL) {
 
   if(! is.null(analyte)){
-    if(! (analyte %in% dplyr::pull(dplyr::filter(psid_analyte, psid == psid), analyte))){
+    if(! (analyte %in% psid_analyte[which(psid_analyte$psid == psid), ]$analyte)){
       stop(paste0("The requested analyte ", analyte,
                   " is not found for the input psid ",
                   psid, ". Use `get_analyte_summary(",
@@ -32,21 +32,24 @@ get_data <- function(psid, start_date = NULL, end_date = NULL, analyte = NULL) {
   }
 
   if(!is.character(psid)) {
-    stop("Argument `psid` must be of class `character`. To view a psid lookup table, see the built-in object `psid_df`.",
+    stop("Argument `psid` must be of class `character`.
+         To view a table of water systems lookup table,
+         see the built-in object `water_systems`.",
          call. = FALSE)
   }
+
   url = paste0('https://sdwis.s3.us-west-1.amazonaws.com/', psid, '.csv.gz')
   d   = data.table::fread(url)
 
   # if present, filter by start and end dates and analytes
   if(!is.null(start_date)){
-    d <- dplyr::filter(d, SAMP_DATE >= start_date)
+    d <- d[d$SAMP_DATE >= start_date, ]
   }
   if(!is.null(end_date)){
-    d <- dplyr::filter(d, SAMP_DATE <= end_date)
+    d <- d[d$SAMP_DATE <= end_date, ]
   }
   if(!is.null(analyte)){
-    d <- dplyr::filter(d, CHEMICAL == analyte)
+    d <- d[d$CHEMICAL == analyte, ]
   }
   return(d)
 }
