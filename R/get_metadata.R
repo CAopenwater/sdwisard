@@ -4,7 +4,6 @@
 #' @export
 get_water_system <- function(...) {
 
-
   arg <- list(...)
   if (length(arg) == 0) stop("supply either a zipcode or county", call. = FALSE)
   if (is.null(names(arg))) stop("supply named argument", call. = FALSE)
@@ -22,6 +21,7 @@ get_water_system <- function(...) {
   }
 
   water_system
+
 }
 
 get_analyte_summary <- function(psid) {
