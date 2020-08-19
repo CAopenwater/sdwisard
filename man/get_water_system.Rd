@@ -7,10 +7,14 @@
 get_water_system(...)
 }
 \arguments{
-\item{zipcode}{zip}
+\item{zipcode}{zipcode}
 
 \item{county}{county}
 }
 \description{
-Get Water System
+Enable user to discover water system ID when supplied a zipcode or county of interest
+}
+\examples{
+get_water_system(zipcode = "90201")
+get_water_system(county = "D")
 }

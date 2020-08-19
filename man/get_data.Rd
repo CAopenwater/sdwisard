@@ -13,10 +13,10 @@ get_data(psid, start_date = NULL, end_date = NULL, analyte = NULL)
 
 \item{end_date}{The end date for queried results.}
 
-\item{analytes}{A vector of analytes to return.}
+\item{analyte}{A single analyte to return.}
 }
 \value{
-A data.table of analyte results for the input PSID and given dates.
+A data.table of analyte results for the input PSID and date range.
 }
 \description{
 Query the SDWIS database by a public water system ID (PSID), start and end date, and analyte.
@@ -25,11 +25,4 @@ Query the SDWIS database by a public water system ID (PSID), start and end date,
 d <- get_data("103039")
 head(d)
 
-get_data(
-  psid    = "110001",
-  analyte = "NITRATE + NITRITE (AS N)"
-) \%>\%
-ggplot(aes(SAMP_DATE, FINDING)) +
-  geom_point() +
-  geom_smooth()
 }
