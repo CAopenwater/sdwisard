@@ -14,9 +14,6 @@ library(sdwisard)
 ```
 
 ```{r}
-# returns psid and water system name for a given zipcode
-sdwisard::get_water_system(zipcode = 90210)
-
 # returns psid and water system name for a given county
 sdwisard::get_water_system(county = "Alameda")
 
