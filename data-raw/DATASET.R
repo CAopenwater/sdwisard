@@ -1,16 +1,18 @@
 library(tidyverse)
 
 # data.frame of colnames = c(psid, water_system_name, county, zipcode)
-water_systems <- tibble(psid = c("103039", "103040"),
+water_systems <- data.frame(psid = c("103039", "103040"),
                         water_system_name = c("A","B"),
                         county = c("D","E"),
-                        zipcode = c(90201, 94601))
+                        zipcode = c(90201, 94601),
+                        stringsAsFactors = FALSE)
 
 usethis::use_data(water_systems, overwrite = TRUE)
 
 # data.frame of colnames = c(storet, analytes)
-analytes <- tibble(storet  = c("00081", "00086"),
-                   analyte = c("COLOR", "ODOR THRESHOLD @ 60 C"))
+analytes <- data.frame(storet  = c("00081", "00086"),
+                   analyte = c("COLOR", "ODOR THRESHOLD @ 60 C"),
+                   stringsAsFactors = FALSE)
 
 usethis::use_data(analytes, overwrite = TRUE)
 
