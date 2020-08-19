@@ -24,7 +24,19 @@ get_water_system <- function(...) {
 
 }
 
+#' Get Analyte Summary
+#' @description  For a given water system ID (psid), returns all the analytes
+#' with their date range and number of records
+#' @param psid water system id
+#' @export
 get_analyte_summary <- function(psid) {
+
+  summary <- psid_analyte[psid_analyte$psid == psid, ]
+  if (nrow(summary) == 0) {
+    stop(paste("the psid", psid, "is invalid"), call. = FALSE)
+  }
+
+  summary
 
 }
 
