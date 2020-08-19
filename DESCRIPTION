@@ -1,12 +1,18 @@
 Package: sdwisard
 Type: Package
-Title: What the Package Does (Title Case)
+Title: R wrapper for accessing a pretend API for SDWIS
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: c(
+    person("Sadie", "Gill", email = "sgill@flowwest.com", role = c("aut", "cre")), 
+    person("Emanuel", "Rodriguez", email = "erodriguez@flowwest.com", role = c("aut")),
+    person("Rich", "Pauloo", email = "richpauloo@gmail.com", role = c("aut")))
+Description: This package was developed as an entry to the CA Water Data Challenge 2020. 
+    It demonstrates the utility of easy to use API wrappers to empower analysts 
+    to get more done with data with less effort. Currently the SDWIS database is inconvenient 
+    to query and there is no public facing API. This wrapper grabs data hosted in an 
+    AWS s3 bucket so we can pretend there is already the infrastructure to support 
+    this type of development. 
+License: CC0
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
@@ -14,4 +20,6 @@ Imports:
     dplyr,
     data.table
 Suggests: 
-    testthat
+    testthat,
+    rmarkdown
+URL: https://caopenwater.github.io/sdwisard/
