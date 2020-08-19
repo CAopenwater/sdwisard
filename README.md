@@ -13,6 +13,7 @@ remotes::install_github(repo = "CAopenwater/sdwisard")
 ## Basic Usage
 
 ```r
-sdwisard::get_data(psid, start_date, end_date, analytes) ```
+sdwisard::get_data(psid, start_date, end_date, analyte) 
+```
 
 For more details see our [Getting Started](https://CAopenwater.github.io/sdwisard/articles/getting-started.html) article.
