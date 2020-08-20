@@ -2,37 +2,18 @@
 
 Query tool for SDWIS (Safe Drinking Water Information System)
 
-First, determine the PSIDs of interest.
+This package was developed as an entry to the CA Water Data Challenge 2020.  It demonstrates the utility of easy to use API wrappers to empower analysts to get more done with data with less effort. Currently the SDWIS database is inconvenient  to query and there is no public facing API. This wrapper grabs data hosted in an AWS s3 bucket so we can pretend there is already the infrastructure to support this type of development. 
 
-## Query metadata
-```r 
-sdwisard::get_water_system(zipcode, county) # returns psid and water system name for given zipcode
-sdwisard::get_analyte_summary(psid)         # returns summarised df of analytes, storet, and date range
-sdwisard::get_storet(analyte)               # returns summarised df of analytes, and date range
-```
-
-Use PSIDs obtained to query for analytes.
-## Query data
-```r
-sdwisard::get_data(psid, start_date, end_date, analytes) 
-```
-
-## Package objects
+## Installation
 
 ```r
-# data.frame of colnames = c(psid, water_system_name, county, zipcode)
-sdwisard::water_systems
-
-# data.frame of colnames = c(storet, analyte)
-sdwisard::analytes 
-
-# internal of colnames = c(psid, storet, analyte, start_date, end_date, n)
-sdwisard::psid_analyte
+remotes::install_github(repo = "CAopenwater/sdwisard")
 ```
 
-## Getting started
+## Basic Usage
 
-Query by psid, start_date, end_date, and analyte
 ```r
-sdwisard::get_data(psid, start_date, end_date, analyte)
+sdwisard::get_data(psid, start_date, end_date, analyte) 
 ```
+
+For more details see our [Getting Started](https://CAopenwater.github.io/sdwisard/articles/getting-started.html) article.
