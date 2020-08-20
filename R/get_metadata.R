@@ -2,13 +2,16 @@
 #' @description Enable user to discover water system ID when supplied a county of interest
 #' @param county county
 #' @examples
-#' get_water_system(county = "D")
+#' get_water_system(county = "FRESNO")
 #' @export
 get_water_system <- function(county) {
 
-  water_system <- water_systems[water_systems$county == county, ]$water_system_name
+  upper_county <- toupper(county)
 
-  if (!length(water_system)) {
+  water_system <- subset(water_systems, (!is.na(psid) & county == upper_county),
+                         select = c(psid, water_system_name))
+
+  if (nrow(water_system) == 0) {
     warning(paste("county", county, "was not found", call. = FALSE))
     water_system <- NA
   }

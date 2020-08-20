@@ -1,5 +1,7 @@
 test_that("Returns water system when supplied county", {
-  expect_equal(get_water_system(county = "E"), "B")
+  expect_equal(get_water_system(county = "FRESNO")[1, ],
+               structure(list(psid = 1000001L, water_system_name = "ALDER SPRINGS"),
+                         row.names = 636L, class = c("data.table", "data.frame")))
 })
 
 test_that("Graceful return for non-existent county", {

@@ -4,17 +4,14 @@
 \alias{get_water_system}
 \title{Get Water System}
 \usage{
-get_water_system(...)
+get_water_system(county)
 }
 \arguments{
-\item{zipcode}{zipcode}
-
 \item{county}{county}
 }
 \description{
-Enable user to discover water system ID when supplied a zipcode or county of interest
+Enable user to discover water system ID when supplied a county of interest
 }
 \examples{
-get_water_system(zipcode = "90201")
 get_water_system(county = "D")
 }
