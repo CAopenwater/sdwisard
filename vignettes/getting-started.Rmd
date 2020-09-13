@@ -9,20 +9,104 @@ knitr::opts_chunk$set(
 )
 ```
 
+Make sure the package is installed. See [installation instructions here](https://caopenwater.github.io/sdwisard/).  
+
 ```{r setup}
 library(sdwisard)
 ```
 
+
+## How to query data
+
+Use the PSID (public water system ID number) of a system to get all the water quality data for that system. For example, Alameda County Water District is PSID 110001:  
+
 ```{r}
-# returns psid and water system name for a given zipcode
-sdwisard::get_water_system(zipcode = 90210)
-
-# returns psid and water system name for a given county
-sdwisard::get_water_system(county = "Alameda")
-
-# returns summary of analytes available for a water system
-sdwisard::get_analyte_summary(psid = "103039")
-
-# returns summarised df of analytes, and date range
-sdwisard::get_storet_id("COLOR")
+# returns all analyte data for PSID 110001 
+d <- get_data(psid = "110001")
+head(d)
 ```
+
+You can query for a specific analyte by providing the storet ID. 
+
+```{r}
+# for PSID 110001, return all nitrate data (storet ID = A-029)
+d <- get_data(psid = "110001", storet = "A-029")
+```
+
+We can plot these results with `ggplot` as follows:
+
+```{r}
+library(ggplot2)
+ggplot(d, aes(SAMP_DATE, FINDING)) +
+  geom_point() +
+  geom_smooth() +
+  labs(title = "NITRATE + NITRITE (AS N) at Alameda County Water District",
+       y     = "FINDING (MG/L)")
+```
+
+Constrain the date range of the samples returned by supplying `start_date` and/or `end_date` argument(s) in **YYYY-MM-DD** format.  
+
+```{r}
+# returns all data for PSID 110001 between October 1, 2013 & August 30, 2018
+d <- get_data(psid       = "110001", 
+              start_date = "2013-10-01", 
+              end_date   = "2018-09-30")
+```
+
+
+
+## How to query metadata
+
+At the very least you must supply the **PSID** of a water system to `get_data()`. However, you may not know the PSID of a system of interest, or the:  
+ 
+* analytes at that PSID  
+* number of samples per analyte  
+* date range of samples per analyte  
+
+To determine the PSID to query, as well as the storet IDs and date ranges of the analytes of interest, you can query metadata with the three helper functions:  
+
+* `get_water_system()`  
+* `get_analyte_summary()`  
+* `get_storet_id()`  
+
+Supply a county to `get_water_system()` to return PSIDs and water system names within that county:  
+
+```{r}
+# returns psid and water system name for a given county
+get_water_system(county = "Alameda")
+```
+
+Supply a PSID to `get_analyte_summary()` to view a summary of its analyte data.
+
+```{r}
+# returns summary of analytes available for a water system
+get_analyte_summary(psid = "110001") 
+```
+
+Supply the common name of an analyte to search for storet IDs.
+
+```{r}
+# returns storet ids for input chemicals
+get_storet_id("nitrate")
+```
+
+
+## Built-in package objects
+
+Full tables of metadata are also available:  
+
+```{r}
+# data.frame of psid, water system name, and county
+water_systems
+```
+
+```{r}
+# data.frame of psid, storet, analyte, start date, end date, n samples
+psid_analyte
+```
+
+```{r}
+# data.frame of storet and analyte
+analytes
+```
+
