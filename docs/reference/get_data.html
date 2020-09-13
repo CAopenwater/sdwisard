@@ -8,21 +8,29 @@
 
 <title>Query SDWIS by PSID — get_data • sdwisard</title>
 
-<!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,10 @@
 
 
 
-<meta property="og:title" content="Query SDWIS by PSID — get_data" />
 
-<meta property="og:description" content="Query the SDWIS database by a public water system ID (PSID), start and end date, and analyte." />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Query SDWIS by PSID — get_data" />
+<meta property="og:description" content="Query the SDWIS database by a public water system ID (PSID), start and end date, and storet." />
+
 
 
 
@@ -47,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -85,7 +94,6 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/CAopenwater/sdwisard">
@@ -100,6 +108,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -111,19 +120,21 @@
     </div>
 
     <div class="ref-description">
-    
-    <p>Query the SDWIS database by a public water system ID (PSID), start and end date, and analyte.</p>
-    
+    <p>Query the SDWIS database by a public water system ID (PSID), start and end date, and storet.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_data</span>(<span class='no'>psid</span>, <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>analyte</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>get_data</span>(psid = <span class='kw'>NULL</span>, storet = <span class='kw'>NULL</span>, start_date = <span class='kw'>NULL</span>, end_date = <span class='kw'>NULL</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>psid</th>
       <td><p>The public water system ID to be queried.</p></td>
+    </tr>
+    <tr>
+      <th>storet</th>
+      <td><p>A single storet to return.</p></td>
     </tr>
     <tr>
       <th>start_date</th>
@@ -133,33 +144,141 @@
       <th>end_date</th>
       <td><p>The end date for queried results.</p></td>
     </tr>
-    <tr>
-      <th>analyte</th>
-      <td><p>A single analyte to return.</p></td>
-    </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.table of analyte results for the input PSID and date range.</p>
-    
+    <p>A data.table of storet results for the input PSID and date range.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'>get_data</span>(<span class='st'>"103039"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in data.table::fread(url): To read gz and bz2 files directly, fread() requires 'R.utils' package which cannot be found. Please install 'R.utils' using 'install.packages('R.utils')'.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>d</span>)</div><div class='output co'>#&gt; <span class='error'>Error in head(d): object 'd' not found</span></div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>d</span> <span class='op'>&lt;-</span> <span class='fu'>get_data</span>(<span class='st'>"103039"</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>d</span>)
+</div><div class='output co'>#&gt;     PWSID  SAMP_DATE SAMP_TIME LAB_NUM    ANADATE     INDATE METHOD INBY
+#&gt; 1: 103039 2017-11-22       848    4790 2017-11-22 2017-11-30 SM 212    #
+#&gt; 2: 103039 2017-11-22       848    4790 2017-11-22 2017-11-30 SM 215    #
+#&gt; 3: 103039 2017-11-22       848    4790 2017-11-29 2017-11-30 SM 251    #
+#&gt; 4: 103039 2017-11-22       848    4790 2017-11-29 2017-11-30 SM4500    #
+#&gt; 5: 103039 2017-11-22       848    4790 2017-11-22 2017-11-30  300.0    #
+#&gt;    SPECIAL STORE_NUM XMOD FINDING              CHEMICAL
+#&gt; 1:       S        81    &lt;     3.0                 COLOR
+#&gt; 2:       S        86    &lt;     1.0 ODOR THRESHOLD @ 60 C
+#&gt; 3:       S        95 &lt;NA&gt;   550.0  SPECIFIC CONDUCTANCE
+#&gt; 4:       S       403 &lt;NA&gt;     8.1        PH, LABORATORY
+#&gt; 5:       S       618 &lt;NA&gt;     5.7        NITRATE (AS N)
+#&gt;                            AKA1 AKA2 CLS RPT_CDE RPT_UNIT  MCL NL TRIGGER_AM
+#&gt; 1: COLOR, APPARENT (UNFILTERED)   NA   T      GP    UNITS   15  0         15
+#&gt; 2:                         &lt;NA&gt;   NA   T      GP      TON    3  0          3
+#&gt; 3:                         E.C.   NA   T      GP       US 1600  0        900
+#&gt; 4:                         &lt;NA&gt;   NA   T      GP     &lt;NA&gt;    0  0          0
+#&gt; 5:                         &lt;NA&gt;   NA   T      NI     MG/L   10  0          5
+#&gt;    DLR PHG RPHL             CHEM_SORT Water System Name Principal County Served
+#&gt; 1: 0.0   0    0                 COLOR                NA                      NA
+#&gt; 2: 1.0   0    0 ODOR THRESHOLD @ 60 C                NA                      NA
+#&gt; 3: 0.0   0    0  SPECIFIC CONDUCTANCE                NA                      NA
+#&gt; 4: 0.0   0    0        PH, LABORATORY                NA                      NA
+#&gt; 5: 0.4  10   10        NITRATE (AS N)                NA                      NA
+#&gt;    Federal Water System Type -CODE Federal Water System Type
+#&gt; 1:                              NA                        NA
+#&gt; 2:                              NA                        NA
+#&gt; 3:                              NA                        NA
+#&gt; 4:                              NA                        NA
+#&gt; 5:                              NA                        NA
+#&gt;    State Water System Type -CODE State Water System Type
+#&gt; 1:                            NA                      NA
+#&gt; 2:                            NA                      NA
+#&gt; 3:                            NA                      NA
+#&gt; 4:                            NA                      NA
+#&gt; 5:                            NA                      NA
+#&gt;    Water System Status -CODE Water System Status Owner Type -CODE Owner Type
+#&gt; 1:                        NA                  NA               NA         NA
+#&gt; 2:                        NA                  NA               NA         NA
+#&gt; 3:                        NA                  NA               NA         NA
+#&gt; 4:                        NA                  NA               NA         NA
+#&gt; 5:                        NA                  NA               NA         NA
+#&gt;    Primary Water Source Type -CODE Primary Water Source Type
+#&gt; 1:                              NA                        NA
+#&gt; 2:                              NA                        NA
+#&gt; 3:                              NA                        NA
+#&gt; 4:                              NA                        NA
+#&gt; 5:                              NA                        NA
+#&gt;    Residential Population Non Transient Population Transient Population
+#&gt; 1:                     NA                       NA                   NA
+#&gt; 2:                     NA                       NA                   NA
+#&gt; 3:                     NA                       NA                   NA
+#&gt; 4:                     NA                       NA                   NA
+#&gt; 5:                     NA                       NA                   NA
+#&gt;    Total Population Number of Service Connections Agricultural
+#&gt; 1:               NA                                         NA
+#&gt; 2:               NA                                         NA
+#&gt; 3:               NA                                         NA
+#&gt; 4:               NA                                         NA
+#&gt; 5:               NA                                         NA
+#&gt;    Number of COMBINED Service Connections (CB)
+#&gt; 1:                                          NA
+#&gt; 2:                                          NA
+#&gt; 3:                                          NA
+#&gt; 4:                                          NA
+#&gt; 5:                                          NA
+#&gt;    Number of Commercial (CM) Service Connections
+#&gt; 1:                                            NA
+#&gt; 2:                                            NA
+#&gt; 3:                                            NA
+#&gt; 4:                                            NA
+#&gt; 5:                                            NA
+#&gt;    Numer of Institutional Service Conections
+#&gt; 1:                                        NA
+#&gt; 2:                                        NA
+#&gt; 3:                                        NA
+#&gt; 4:                                        NA
+#&gt; 5:                                        NA
+#&gt;    Number of Residential Service Connections
+#&gt; 1:                                        NA
+#&gt; 2:                                        NA
+#&gt; 3:                                        NA
+#&gt; 4:                                        NA
+#&gt; 5:                                        NA
+#&gt;    Total Number of Service Connections Fee Code Fee Code Description
+#&gt; 1:                                  NA       NA                   NA
+#&gt; 2:                                  NA       NA                   NA
+#&gt; 3:                                  NA       NA                   NA
+#&gt; 4:                                  NA       NA                   NA
+#&gt; 5:                                  NA       NA                   NA
+#&gt;    Date of Sanitary Survey visit (SNSV Visit Date) CITY
+#&gt; 1:                                              NA   NA
+#&gt; 2:                                              NA   NA
+#&gt; 3:                                              NA   NA
+#&gt; 4:                                              NA   NA
+#&gt; 5:                                              NA   NA
+#&gt;    Treatment Plant Class-CODE Treatment Plant Class
+#&gt; 1:                         NA                    NA
+#&gt; 2:                         NA                    NA
+#&gt; 3:                         NA                    NA
+#&gt; 4:                         NA                    NA
+#&gt; 5:                         NA                    NA
+#&gt;    Distribution System Class-CODE Distribution System Class
+#&gt; 1:                             NA                        NA
+#&gt; 2:                             NA                        NA
+#&gt; 3:                             NA                        NA
+#&gt; 4:                             NA                        NA
+#&gt; 5:                             NA                        NA</div><div class='input'>
+<span class='co'># Alameda Country Water District (psid = 110001)</span>
+<span class='co'># nitrate data (storet = A-029)</span>
+<span class='fu'>get_data</span>(
+  psid   = <span class='st'>"110001"</span>,
+  storet = <span class='st'>"A-029"</span>
+) <span class='op'>%&gt;%</span>
+<span class='fu'>ggplot</span>(<span class='fu'>aes</span>(<span class='kw'>SAMP_DATE</span>, <span class='kw'>FINDING</span>)) <span class='op'>+</span>
+  <span class='fu'>geom_point</span>() <span class='op'>+</span>
+  <span class='fu'>geom_smooth</span>()
+</div><div class='output co'>#&gt; <span class='error'>Error in get_data(psid = "110001", storet = "A-029") %&gt;% ggplot(aes(SAMP_DATE,     FINDING)): could not find function "%&gt;%"</span></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -167,13 +286,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
