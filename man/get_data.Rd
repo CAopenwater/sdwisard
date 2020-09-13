@@ -4,30 +4,32 @@
 \alias{get_data}
 \title{Query SDWIS by PSID}
 \usage{
-get_data(psid = NULL, analyte = NULL, start_date = NULL, end_date = NULL)
+get_data(psid = NULL, storet = NULL, start_date = NULL, end_date = NULL)
 }
 \arguments{
 \item{psid}{The public water system ID to be queried.}
 
-\item{analyte}{A single analyte to return.}
+\item{storet}{A single storet to return.}
 
 \item{start_date}{The starting date for queried results.}
 
 \item{end_date}{The end date for queried results.}
 }
 \value{
-A data.table of analyte results for the input PSID and date range.
+A data.table of storet results for the input PSID and date range.
 }
 \description{
-Query the SDWIS database by a public water system ID (PSID), start and end date, and analyte.
+Query the SDWIS database by a public water system ID (PSID), start and end date, and storet.
 }
 \examples{
 d <- get_data("103039")
 head(d)
 
+# Alameda Country Water District (psid = 110001)
+# nitrate data (storet = A-029)
 get_data(
-  psid    = "110001",
-  analyte = "NITRATE + NITRITE (AS N)"
+  psid   = "110001",
+  storet = "A-029"
 ) \%>\%
 ggplot(aes(SAMP_DATE, FINDING)) +
   geom_point() +
