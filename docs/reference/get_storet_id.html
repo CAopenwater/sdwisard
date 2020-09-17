@@ -129,11 +129,26 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_storet_id</span>(<span class='st'>"c"</span>)</div><div class='output co'>#&gt;   storet               analyte
-#&gt; 1  00081                 COLOR
-#&gt; 2  00086 ODOR THRESHOLD @ 60 C</div><div class='input'><span class='fu'>get_storet_id</span>(<span class='st'>"Color"</span>)</div><div class='output co'>#&gt;   storet analyte
-#&gt; 1  00081   COLOR</div><div class='input'><span class='fu'>get_storet_id</span>(<span class='st'>"COLOR"</span>)</div><div class='output co'>#&gt;   storet analyte
-#&gt; 1  00081   COLOR</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>get_storet_id</span>(<span class='st'>"c"</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 218 x 2</span><span>
+#&gt;    storet analyte                     
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                       
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 00081  COLOR                       
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 00086  ODOR THRESHOLD @ 60 C       
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 00095  SPECIFIC CONDUCTANCE        
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 01032  CHROMIUM, HEXAVALENT        
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 77288  DICHLOROACETIC ACID (DCAA)  
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 82721  DIBROMOACETIC ACID (DBAA)   
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 82723  TRICHLOROACETIC ACID (TCAA) 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> A-041  MONOBROMOACETIC ACID (MBAA) 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> A-042  MONOCHLOROACETIC ACID (MCAA)
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> A-049  HALOACETIC ACIDS (5) (HAA5) 
+#&gt; </span><span style='color: #949494;'># … with 208 more rows</span><span></div><div class='input'><span class='fu'>get_storet_id</span>(<span class='st'>"Color"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 2</span><span>
+#&gt;   storet analyte
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 00081  COLOR  </div><div class='input'><span class='fu'>get_storet_id</span>(<span class='st'>"COLOR"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 2</span><span>
+#&gt;   storet analyte
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 00081  COLOR  </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

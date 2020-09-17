@@ -81,33 +81,193 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sdwisard)</a></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># returns psid and water system name for a given zipcode</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">sdwisard<span class="op">::</span><span class="kw"><a href="https://CAopenwater.github.io/cvpiaFlow//reference/get_water_system.html">get_water_system</a></span>(<span class="dt">zipcode =</span> <span class="dv">90210</span>)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; Warning: zipcode 90210 was not found</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; [1] NA</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co"># returns psid and water system name for a given county</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">sdwisard<span class="op">::</span><span class="kw"><a href="https://CAopenwater.github.io/cvpiaFlow//reference/get_water_system.html">get_water_system</a></span>(<span class="dt">county =</span> <span class="st">"Alameda"</span>)</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; Warning: county Alameda was not found</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; [1] NA</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co"># returns summary of analytes available for a water system</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">sdwisard<span class="op">::</span><span class="kw"><a href="https://CAopenwater.github.io/cvpiaFlow//reference/get_analyte_summary.html">get_analyte_summary</a></span>(<span class="dt">psid =</span> <span class="st">"103039"</span>)</a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;     psid storet               analyte start_date   end_date n</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; 1 103039  00081                 COLOR 2017-11-22 2017-11-22 1</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; 2 103039  00086 ODOR THRESHOLD @ 60 C 2017-11-22 2017-11-22 1</span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; 3 103039  00095  SPECIFIC CONDUCTANCE 2017-11-22 2017-11-22 1</span></a>
-<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; 4 103039  00403        PH, LABORATORY 2017-11-22 2017-11-22 1</span></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt; 5 103039  00618        NITRATE (AS N) 2017-11-22 2017-11-22 1</span></a>
-<a class="sourceLine" id="cb2-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co"># returns summarised df of analytes, and date range</span></a>
-<a class="sourceLine" id="cb2-21" data-line-number="21">sdwisard<span class="op">::</span><span class="kw"><a href="https://CAopenwater.github.io/cvpiaFlow//reference/get_storet_id.html">get_storet_id</a></span>(<span class="st">"COLOR"</span>)</a>
-<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt;   storet analyte</span></a>
-<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt; 1  00081   COLOR</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sdwisard)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a></code></pre></div>
+<p>Make sure the package is installed. See <a href="https://caopenwater.github.io/sdwisard/">installation instructions here</a>.</p>
+<div id="basic-query" class="section level2">
+<h2 class="hasAnchor">
+<a href="#basic-query" class="anchor"></a>Basic Query</h2>
+<p>The <strong>PSID</strong> (public water system ID number) of a water system is the only mandatory argument to <code><a href="../reference/get_data.html">get_data()</a></code>. Use the PSID of a system to get all the water quality data for that system.</p>
+<p>For example, Alameda County Water District is PSID 110001:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">alameda_all &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="dt">psid =</span> <span class="st">"110001"</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(alameda_all)</a></code></pre></div>
+<pre><code>## Rows: 25,317
+## Columns: 55
+## $ PWSID                                             &lt;int&gt; 110001, 110001…
+## $ SAMP_DATE                                         &lt;chr&gt; "2013-07-15", …
+## $ SAMP_TIME                                         &lt;int&gt; 1002, 1002, 10…
+## $ LAB_NUM                                           &lt;int&gt; 5401, 5401, 54…
+## $ ANADATE                                           &lt;chr&gt; "2013-07-22", …
+## $ INDATE                                            &lt;chr&gt; "2013-09-05", …
+## $ METHOD                                            &lt;chr&gt; NA, NA, NA, NA…
+## $ INBY                                              &lt;chr&gt; "U", "U", "U",…
+## $ SPECIAL                                           &lt;chr&gt; "S", "S", "S",…
+## $ STORE_NUM                                         &lt;chr&gt; "00081", "0008…
+## $ XMOD                                              &lt;chr&gt; "&lt;", "&lt;", NA, …
+## $ FINDING                                           &lt;dbl&gt; 5.000, 1.000, …
+## $ CHEMICAL                                          &lt;chr&gt; "COLOR", "ODOR…
+## $ AKA1                                              &lt;chr&gt; "COLOR, APPARE…
+## $ AKA2                                              &lt;chr&gt; NA, NA, NA, NA…
+## $ CLS                                               &lt;chr&gt; "T", "T", "T",…
+## $ RPT_CDE                                           &lt;chr&gt; "GP", "GP", "G…
+## $ RPT_UNIT                                          &lt;chr&gt; "UNITS", "TON"…
+## $ MCL                                               &lt;dbl&gt; 15, 3, 1600, 0…
+## $ NL                                                &lt;dbl&gt; 0, 0, 0, 0, 0,…
+## $ TRIGGER_AM                                        &lt;dbl&gt; 15, 3, 900, 0,…
+## $ DLR                                               &lt;dbl&gt; 0.0, 1.0, 0.0,…
+## $ PHG                                               &lt;int&gt; 0, 0, 0, 0, 0,…
+## $ RPHL                                              &lt;int&gt; 0, 0, 0, 0, 0,…
+## $ CHEM_SORT                                         &lt;chr&gt; "COLOR", "ODOR…
+## $ `Water System Name`                               &lt;chr&gt; "ALAMEDA COUNT…
+## $ `Principal County Served`                         &lt;chr&gt; "ALAMEDA", "AL…
+## $ `Federal Water System Type -CODE`                 &lt;chr&gt; "C", "C", "C",…
+## $ `Federal Water System Type`                       &lt;chr&gt; "Community", "…
+## $ `State Water System Type -CODE`                   &lt;chr&gt; "C", "C", "C",…
+## $ `State Water System Type`                         &lt;chr&gt; "Community", "…
+## $ `Water System Status -CODE`                       &lt;chr&gt; "A", "A", "A",…
+## $ `Water System Status`                             &lt;chr&gt; "ACTIVE", "ACT…
+## $ `Owner Type -CODE`                                &lt;chr&gt; "L", "L", "L",…
+## $ `Owner Type`                                      &lt;chr&gt; "Local", "Loca…
+## $ `Primary Water Source Type -CODE`                 &lt;chr&gt; "SW", "SW", "S…
+## $ `Primary Water Source Type`                       &lt;chr&gt; "Surface Water…
+## $ `Residential Population`                          &lt;int&gt; 340000, 340000…
+## $ `Non Transient Population`                        &lt;lgl&gt; NA, NA, NA, NA…
+## $ `Transient Population`                            &lt;lgl&gt; NA, NA, NA, NA…
+## $ `Total Population`                                &lt;int&gt; 340000, 340000…
+## $ `Number of Service Connections Agricultural`      &lt;lgl&gt; NA, NA, NA, NA…
+## $ `Number of COMBINED Service Connections (CB)`     &lt;int&gt; 80871, 80871, …
+## $ `Number of Commercial (CM) Service Connections`   &lt;lgl&gt; NA, NA, NA, NA…
+## $ `Numer of Institutional Service Conections`       &lt;lgl&gt; NA, NA, NA, NA…
+## $ `Number of Residential Service Connections`       &lt;lgl&gt; NA, NA, NA, NA…
+## $ `Total Number of Service Connections`             &lt;int&gt; 80871, 80871, …
+## $ `Fee Code`                                        &lt;chr&gt; "C1", "C1", "C…
+## $ `Fee Code Description`                            &lt;chr&gt; "Large Water S…
+## $ `Date of Sanitary Survey visit (SNSV Visit Date)` &lt;chr&gt; "11/30/2017", …
+## $ CITY                                              &lt;chr&gt; "FREMONT", "FR…
+## $ `Treatment Plant Class-CODE`                      &lt;chr&gt; "T5", "T5", "T…
+## $ `Treatment Plant Class`                           &lt;chr&gt; "Treatment Ope…
+## $ `Distribution System Class-CODE`                  &lt;chr&gt; "D5", "D5", "D…
+## $ `Distribution System Class`                       &lt;chr&gt; "Distribution …</code></pre>
+</div>
+<div id="helper-functions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#helper-functions" class="anchor"></a>Helper Functions</h2>
+<p><strong>sdwisard</strong> includes three helper functions:</p>
+<ul>
+<li>
+<code><a href="../reference/get_water_system.html">get_water_system()</a></code> - Find PSID by county name</li>
+<li>
+<code><a href="../reference/get_analyte_summary.html">get_analyte_summary()</a></code> - Summary about available data for a water system<br>
+</li>
+<li>
+<code><a href="../reference/get_storet_id.html">get_storet_id()</a></code> - Find storet id with common chemical name</li>
+</ul>
+<p>Supply a county to <code><a href="../reference/get_water_system.html">get_water_system()</a></code> to return PSIDs and water system names within that county.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/get_water_system.html">get_water_system</a></span>(<span class="dt">county =</span> <span class="st">"Alameda"</span>)</a></code></pre></div>
+<pre><code>## [1] NA NA NA NA</code></pre>
+<p>Supply a PSID to <code><a href="../reference/get_analyte_summary.html">get_analyte_summary()</a></code> to view a summary of a water system’s available analyte data.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="../reference/get_analyte_summary.html">get_analyte_summary</a></span>(<span class="dt">psid =</span> <span class="st">"110001"</span>) </a></code></pre></div>
+<pre><code>## # A tibble: 200 x 6
+##      psid storet analyte                     start_date end_date       n
+##     &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;                       &lt;date&gt;     &lt;date&gt;     &lt;int&gt;
+##  1 110001 00010  SOURCE TEMPERATURE C        2013-05-21 2019-02-21     5
+##  2 110001 00081  COLOR                       2013-01-29 2019-07-16   265
+##  3 110001 00086  ODOR THRESHOLD @ 60 C       2013-01-29 2019-07-16   263
+##  4 110001 00095  SPECIFIC CONDUCTANCE        2013-01-29 2019-07-16   270
+##  5 110001 00400  PH, FIELD                   2013-01-29 2019-07-16   268
+##  6 110001 00403  PH, LABORATORY              2014-09-15 2019-02-21     6
+##  7 110001 00410  ALKALINITY (TOTAL) AS CACO3 2013-01-29 2019-07-16   274
+##  8 110001 00440  BICARBONATE ALKALINITY      2013-01-29 2019-07-16   274
+##  9 110001 00445  CARBONATE ALKALINITY        2013-01-29 2019-07-16   274
+## 10 110001 00618  NITRATE (AS N)              2015-10-20 2019-07-16   155
+## # … with 190 more rows</code></pre>
+<p>Use the function <code>get_storet_id</code> to search for storet IDs by common names of an analytes.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">nitrate_ids &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_storet_id.html">get_storet_id</a></span>(<span class="st">"nitrate"</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">nitrate_ids</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   storet analyte                 
+##   &lt;chr&gt;  &lt;chr&gt;                   
+## 1 00618  NITRATE (AS N)          
+## 2 71850  NITRATE (AS NO3)        
+## 3 A-029  NITRATE + NITRITE (AS N)</code></pre>
+<p>Provide the storet ID to query for a specific analyte. The following query return all nitrate data (storet ID = A-029) for Alameda county Watere District.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">alameda_nitrate &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="dt">psid =</span> <span class="st">"110001"</span>, <span class="dt">storet =</span> <span class="st">"A-029"</span>)</a></code></pre></div>
+<p>We can plot these results with <code>ggplot</code> as follows:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">alameda_nitrate <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">date =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.Date">as.Date</a></span>(SAMP_DATE)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(date, FINDING)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">title =</span> <span class="st">"NITRATE + NITRITE (AS N) at Alameda County Water District"</span>,</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">       <span class="dt">y =</span> <span class="st">"(MG/L)"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>()</a></code></pre></div>
+<p><img src="getting-started_files/figure-html/unnamed-chunk-7-1.png" width="100%"></p>
+<p>To query a specific date range provide a <code>start_date</code> and/or <code>end_date</code> argument(s) in <strong>YYYY-MM-DD</strong> format.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">alameda_<span class="dv">09</span>_<span class="dv">2018</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_data.html">get_data</a></span>(<span class="dt">psid =</span> <span class="st">"110001"</span>, <span class="dt">start_date =</span> <span class="st">"2018-09-01"</span>, <span class="dt">end_date =</span> <span class="st">"2018-09-30"</span>)</a></code></pre></div>
+</div>
+<div id="built-in-package-objects" class="section level2">
+<h2 class="hasAnchor">
+<a href="#built-in-package-objects" class="anchor"></a>Built-in package objects</h2>
+<p>Full tables of metadata are also available:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">water_systems</a></code></pre></div>
+<pre><code>## # A tibble: 7,422 x 3
+##      psid water_system_name                    county 
+##     &lt;int&gt; &lt;chr&gt;                                &lt;chr&gt;  
+##  1 103040 NORRIS CANYON PROPERTY OWNERS ASSN   ALAMEDA
+##  2 103041 TRAILER HAVEN MOBILE HOME PARK       ALAMEDA
+##  3 105002 RIVERS END MARINA                    ALAMEDA
+##  4 105003 CEMEX/ELIOT PLANT                    ALAMEDA
+##  5 105008 CASTLEWOOD DOMESTIC WATER SYSTEM     ALAMEDA
+##  6 105009 MOUNTAIN HOUSE SCHOOL                ALAMEDA
+##  7 105010 EBRPD - DEL VALLE REGIONAL PARK      ALAMEDA
+##  8 105012 EBRPD - SUNOL REGIONAL WILDERNESS    ALAMEDA
+##  9 105013 EBRPD - REDWOOD SPRING REGIONAL PARK ALAMEDA
+## 10 105016 MOUNTAIN HOUSE BAR                   ALAMEDA
+## # … with 7,412 more rows</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">psid_analyte</a></code></pre></div>
+<pre><code>## # A tibble: 592,765 x 6
+##      psid storet analyte                    start_date end_date       n
+##     &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;                      &lt;date&gt;     &lt;date&gt;     &lt;int&gt;
+##  1 103039 00081  COLOR                      2017-11-22 2017-11-22     1
+##  2 103039 00086  ODOR THRESHOLD @ 60 C      2017-11-22 2017-11-22     1
+##  3 103039 00095  SPECIFIC CONDUCTANCE       2017-11-22 2017-11-22     1
+##  4 103039 00403  PH, LABORATORY             2017-11-22 2017-11-22     1
+##  5 103039 00618  NITRATE (AS N)             2017-11-22 2017-11-22     1
+##  6 103040 00618  NITRATE (AS N)             2016-07-12 2019-06-18     4
+##  7 103040 00620  NITRITE (AS N)             2017-07-11 2017-07-11     1
+##  8 103040 01032  CHROMIUM, HEXAVALENT       2015-07-15 2015-07-15     1
+##  9 103040 01501  GROSS ALPHA                2016-08-15 2016-08-15     1
+## 10 103040 01502  GROSS ALPHA COUNTING ERROR 2016-08-15 2016-08-15     1
+## # … with 592,755 more rows</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">analytes</a></code></pre></div>
+<pre><code>## # A tibble: 444 x 2
+##    storet analyte                    
+##    &lt;chr&gt;  &lt;chr&gt;                      
+##  1 00081  COLOR                      
+##  2 00086  ODOR THRESHOLD @ 60 C      
+##  3 00095  SPECIFIC CONDUCTANCE       
+##  4 00403  PH, LABORATORY             
+##  5 00618  NITRATE (AS N)             
+##  6 71850  NITRATE (AS NO3)           
+##  7 01032  CHROMIUM, HEXAVALENT       
+##  8 77288  DICHLOROACETIC ACID (DCAA) 
+##  9 82721  DIBROMOACETIC ACID (DBAA)  
+## 10 82723  TRICHLOROACETIC ACID (TCAA)
+## # … with 434 more rows</code></pre>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#basic-query">Basic Query</a></li>
+      <li><a href="#helper-functions">Helper Functions</a></li>
+      <li><a href="#built-in-package-objects">Built-in package objects</a></li>
+      </ul>
+</div>
       </div>
 
 </div>

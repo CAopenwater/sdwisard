@@ -79,16 +79,23 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#sdwisard" class="anchor"></a>sdwisard 🧙💧🧪</h1></div>
 <p>Query tool for SDWIS (Safe Drinking Water Information System)</p>
-<p>This package was developed as an entry to the CA Water Data Challenge 2020. It demonstrates the utility of easy to use API wrappers to empower analysts to get more done with data with less effort. Currently the SDWIS database is inconvenient to query and there is no public facing API. This wrapper grabs data hosted in an AWS s3 bucket so we can pretend there is already the infrastructure to support this type of development.</p>
+<div id="purpose" class="section level2">
+<h2 class="hasAnchor">
+<a href="#purpose" class="anchor"></a>Purpose</h2>
+<p>In California, present sources of water quality information are fragmented across thousands of water utilities and lack consistency and clarity. Moreover, although the state has identified <a href="https://water.ca.gov/ab1755">open and transparent water data</a> as critical to inform water management and achieve goals set in <a href="https://oehha.ca.gov/water/report/human-right-water-california">Human Right to Water</a>, analysts remain hampered by a paucity of easy-to-use, open-source tools to acquire and analyze water quality data.</p>
+<p>The <code>sdwisard</code> package is an easy-to-use, open-source query tool for California drinking water quality data in the <a href="https://sdwis.waterboards.ca.gov/PDWW/JSP/MonitoringResults.jsp?tinwsys_is_number=4740&amp;tinwsys_st_code=CA&amp;counter=0">SDWIS database</a>. It was developed as an entry to the <a href="https://waterchallenge.data.ca.gov">CA Water Data Challenge 2020</a> to demonstrate the utility of easy-to-use API wrappers that empower analysts to get more done with data with less effort. Currently the SDWIS database is inconvenient to query and lacks a public facing API. This wrapper grabs data hosted in an AWS s3 bucket so we can pretend there is already the infrastructure to support this type of development.</p>
+</div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
+<p>This package is not yet on CRAN. Download it from Github as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="dt">repo =</span> <span class="st">"CAopenwater/sdwisard"</span>)</a></code></pre></div>
 </div>
 <div id="basic-usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-usage" class="anchor"></a>Basic Usage</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">sdwisard<span class="op">::</span><span class="kw"><a href="https://CAopenwater.github.io/cvpiaFlow//reference/get_data.html">get_data</a></span>(psid, start_date, end_date, analyte) </a></code></pre></div>
+<p>The heart of this package is the <code><a href="reference/get_data.html">get_data()</a></code> function. To obtain data, simply supply a PSID (public water system ID number).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">sdwisard<span class="op">::</span><span class="kw"><a href="https://CAopenwater.github.io/cvpiaFlow//reference/get_data.html">get_data</a></span>(psid) </a></code></pre></div>
 <p>For more details see our <a href="https://CAopenwater.github.io/sdwisard/articles/getting-started.html">Getting Started</a> article.</p>
 </div>
 </div>

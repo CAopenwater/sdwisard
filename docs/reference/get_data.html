@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Query SDWIS by PSID — get_data" />
 
-<meta property="og:description" content="Query the SDWIS database by a public water system ID (PSID), start and end date, and analyte." />
+<meta property="og:description" content="Query the SDWIS database by a public water system ID (PSID), start and end date, and storet." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,11 +112,11 @@
 
     <div class="ref-description">
     
-    <p>Query the SDWIS database by a public water system ID (PSID), start and end date, and analyte.</p>
+    <p>Query the SDWIS database by a public water system ID (PSID), start and end date, and storet.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_data</span>(<span class='no'>psid</span>, <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>analyte</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>get_data</span>(<span class='kw'>psid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>storet</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -126,6 +126,10 @@
       <td><p>The public water system ID to be queried.</p></td>
     </tr>
     <tr>
+      <th>storet</th>
+      <td><p>A single storet to return.</p></td>
+    </tr>
+    <tr>
       <th>start_date</th>
       <td><p>The starting date for queried results.</p></td>
     </tr>
@@ -133,20 +137,24 @@
       <th>end_date</th>
       <td><p>The end date for queried results.</p></td>
     </tr>
-    <tr>
-      <th>analyte</th>
-      <td><p>A single analyte to return.</p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.table of analyte results for the input PSID and date range.</p>
+    <p>A data.table of storet results for the input PSID and date range.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'>get_data</span>(<span class='st'>"103039"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in data.table::fread(url): To read gz and bz2 files directly, fread() requires 'R.utils' package which cannot be found. Please install 'R.utils' using 'install.packages('R.utils')'.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>d</span>)</div><div class='output co'>#&gt; <span class='error'>Error in head(d): object 'd' not found</span></div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'>get_data</span>(<span class='st'>"103039"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: Invalid psid. To find a valid water system PSID, query by county. For example: `get_water_system(county = 'Alameda')`.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>d</span>)</div><div class='output co'>#&gt; <span class='error'>Error in head(d): object 'd' not found</span></div><div class='input'>
+<span class='co'># Alameda Country Water District (psid = 110001)</span>
+<span class='co'># nitrate data (storet = A-029)</span>
+<span class='fu'>get_data</span>(
+  <span class='kw'>psid</span>   <span class='kw'>=</span> <span class='st'>"110001"</span>,
+  <span class='kw'>storet</span> <span class='kw'>=</span> <span class='st'>"A-029"</span>
+) <span class='kw'>%&gt;%</span>
+<span class='fu'>ggplot</span>(<span class='fu'>aes</span>(<span class='no'>SAMP_DATE</span>, <span class='no'>FINDING</span>)) +
+  <span class='fu'>geom_point</span>() +
+  <span class='fu'>geom_smooth</span>()</div><div class='output co'>#&gt; <span class='error'>Error in ggplot(., aes(SAMP_DATE, FINDING)): could not find function "ggplot"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

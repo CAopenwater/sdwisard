@@ -3,26 +3,92 @@ title: "Getting Started"
 ---
 
 ```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+knitr::opts_chunk$set(warnings = FALSE, message = FALSE, out.width = '100%')
 ```
 
-```{r setup}
+
+```{r, setup}
 library(sdwisard)
+library(dplyr)
+library(ggplot2)
+```
+
+Make sure the package is installed. See [installation instructions here](https://caopenwater.github.io/sdwisard/).  
+
+## Basic Query
+
+The **PSID** (public water system ID number) of a water system is the only mandatory argument to `get_data()`. Use the PSID of a system to get all the water quality data for that system. 
+
+For example, Alameda County Water District is PSID 110001:  
+
+```{r}
+alameda_all <- get_data(psid = "110001")
+glimpse(alameda_all)
+```
+
+## Helper Functions
+
+**sdwisard** includes three helper functions:
+
+* `get_water_system()` - Find PSID by county name 
+* `get_analyte_summary()` - Summary about available data for a water system  
+* `get_storet_id()` - Find storet id with common chemical name 
+
+Supply a county to `get_water_system()` to return PSIDs and water system names within that county.  
+```{r}
+get_water_system(county = "Alameda")
+```
+
+Supply a PSID to `get_analyte_summary()` to view a summary of a water system's available analyte data. 
+```{r}
+get_analyte_summary(psid = "110001") 
+```
+
+Use the function `get_storet_id` to search for storet IDs by common names of an analytes.
+
+```{r}
+nitrate_ids <- get_storet_id("nitrate")
+nitrate_ids
+```
+
+Provide the storet ID to query for a specific analyte. The following query return all nitrate data (storet ID = A-029) for Alameda county Watere District. 
+```{r}
+alameda_nitrate <- get_data(psid = "110001", storet = "A-029")
+```
+
+We can plot these results with `ggplot` as follows:
+
+```{r}
+alameda_nitrate %>% 
+  mutate(date = as.Date(SAMP_DATE)) %>% 
+  ggplot(aes(date, FINDING)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  labs(title = "NITRATE + NITRITE (AS N) at Alameda County Water District",
+       y = "(MG/L)") +
+  theme_minimal()
+```
+
+To query a specific date range provide a `start_date` and/or `end_date` argument(s) in **YYYY-MM-DD** format.  
+
+```{r}
+alameda_09_2018 <- get_data(psid = "110001", start_date = "2018-09-01", end_date = "2018-09-30")
+```
+
+
+## Built-in package objects
+
+Full tables of metadata are also available:  
+
+```{r}
+water_systems
 ```
 
 ```{r}
-# returns psid and water system name for a given zipcode
-sdwisard::get_water_system(zipcode = 90210)
-
-# returns psid and water system name for a given county
-sdwisard::get_water_system(county = "Alameda")
-
-# returns summary of analytes available for a water system
-sdwisard::get_analyte_summary(psid = "103039")
-
-# returns summarised df of analytes, and date range
-sdwisard::get_storet_id("COLOR")
+psid_analyte
 ```
+
+```{r}
+analytes
+```
+
