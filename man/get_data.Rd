@@ -22,16 +22,15 @@ A data.table of storet results for the input PSID and date range.
 Query the SDWIS database by a public water system ID (PSID), start and end date, and storet.
 }
 \examples{
-d <- get_data("103039")
+d <- get_data("0105009")
 head(d)
 
 # Alameda Country Water District (psid = 110001)
 # nitrate data (storet = A-029)
-get_data(
-  psid   = "110001",
-  storet = "A-029"
-) \%>\%
-ggplot(aes(SAMP_DATE, FINDING)) +
+d <- get_data(
+  psid   = "0110001",
+  storet = "A-029")
+ggplot(d, aes(SAMP_DATE, FINDING)) +
   geom_point() +
   geom_smooth()
 }
