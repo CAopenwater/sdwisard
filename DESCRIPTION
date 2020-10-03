@@ -23,3 +23,5 @@ Suggests:
     testthat,
     rmarkdown
 URL: https://caopenwater.github.io/sdwisard/
+Depends: 
+    R (>= 2.10)
