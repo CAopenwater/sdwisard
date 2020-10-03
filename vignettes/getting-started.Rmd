@@ -51,7 +51,7 @@ nitrate_ids <- get_storet_id("nitrate")
 nitrate_ids
 ```
 
-Provide the storet ID to query for a specific analyte. The following query return all nitrate data (storet ID = A-029) for Alameda county Watere District. 
+Provide the storet ID to query for a specific analyte. The following query return all nitrate data (storet ID = A-029) for Alameda county Water District. 
 ```{r}
 alameda_nitrate <- get_data(psid = "0110001", storet = "A-029")
 ```
