@@ -6,25 +6,35 @@
 #' get_water_system(zipcode = "90201")
 #' get_water_system(county = "D")
 #' @export
-get_water_system <- function(...) {
+get_water_system <- function(county = NULL) {
 
-  arg <- list(...)
-  if (length(arg) == 0) stop("supply either a zipcode or county", call. = FALSE)
-  if (is.null(names(arg))) stop("supply named argument", call. = FALSE)
-  if (length(arg) > 1) stop("supply only zipcode or county", call. = FALSE)
+  if (is.null(county)) stop("Supply a county.", call. = FALSE)
+  if (length(county) > 1) stop("Supply only one county.", call. = FALSE)
 
-  if (names(arg) == "zipcode") {
-    water_system <- water_systems[water_systems$zipcode == arg$zipcode, ]$water_system_name
-  } else if (names(arg) == "county") {
-    water_system <- water_systems[water_systems$county == arg$county, ]$water_system_name
+  all_counties      <- unique(water_systems$county)
+  user_input_county <- toupper(county)
+
+  if(! user_input_county %in% all_counties) {
+
+    approximate_match <- all_counties[ agrep(user_input_county, all_counties) ]
+
+    if(length(approximate_match) > 1) {
+      approximate_match <- paste("one of the following:", paste(approximate_match, collapse = ", "))
+    }
+
+    stop(paste0("Couldn't find ", user_input_county,
+                " but did you mean ", approximate_match, "?"),
+         call. = FALSE)
   }
 
+  water_system <- water_systems[water_systems$county == user_input_county, ]
+
   if (!length(water_system)) {
-    warning(paste(names(arg), arg[[1]], "was not found"), call. = FALSE)
+    warning(paste("County", county, "was not found."), call. = FALSE)
     water_system <- NA
   }
 
-  water_system
+  return(water_system)
 
 }
 
@@ -40,7 +50,7 @@ get_analyte_summary <- function(psid) {
   summary <- psid_analyte[psid_analyte$psid == psid, ]
 
   if (nrow(summary) == 0) {
-    stop(paste("the psid", psid, "is invalid"), call. = FALSE)
+    stop(paste("The psid", psid, "is invalid."), call. = FALSE)
   }
 
   summary
@@ -60,7 +70,7 @@ get_storet_id <- function(analyte) {
   storets <- analytes[grep(analyte, analytes$analyte, ignore.case = TRUE), ]
 
   if (nrow(storets) == 0) {
-    stop(paste("There are no storet IDs associated with the analyte", analyte), call. = FALSE)
+    stop(paste0("There are no storet IDs associated with the analyte ", analyte, "."), call. = FALSE)
   }
 
   storets

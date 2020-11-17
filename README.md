@@ -24,5 +24,23 @@ The heart of this package is the `get_data()` function. To obtain data, simply s
 sdwisard::get_data(psid) 
 ```
 
+## Quickstart
+
+Supply a PSID and storet number to get data. Here, we get nitrate data in Alameda County Water District.  
+
+```r
+alameda_nitrate <- get_data(psid = "0110001", storet = "A-029")
+
+alameda_nitrate %>% 
+  mutate(date = as.Date(SAMP_DATE)) %>% 
+  ggplot(aes(date, FINDING)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  labs(title = "NITRATE + NITRITE (AS N) at Alameda County Water District",
+       y = "(MG/L)") +
+  theme_minimal()
+```
+
+![](nitrate.png)
 
 For more details see our [Getting Started](https://CAopenwater.github.io/sdwisard/articles/getting-started.html) article.

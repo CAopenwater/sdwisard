@@ -19,10 +19,10 @@ Make sure the package is installed. See [installation instructions here](https:/
 
 The **PSID** (public water system ID number) of a water system is the only mandatory argument to `get_data()`. Use the PSID of a system to get all the water quality data for that system. 
 
-For example, Alameda County Water District is PSID 110001:  
+For example, Alameda County Water District is PSID 0110001:  
 
 ```{r}
-alameda_all <- get_data(psid = "110001")
+alameda_all <- get_data(psid = "0110001")
 glimpse(alameda_all)
 ```
 
@@ -41,7 +41,7 @@ get_water_system(county = "Alameda")
 
 Supply a PSID to `get_analyte_summary()` to view a summary of a water system's available analyte data. 
 ```{r}
-get_analyte_summary(psid = "110001") 
+get_analyte_summary(psid = "0110001") 
 ```
 
 Use the function `get_storet_id` to search for storet IDs by common names of an analytes.
@@ -51,9 +51,9 @@ nitrate_ids <- get_storet_id("nitrate")
 nitrate_ids
 ```
 
-Provide the storet ID to query for a specific analyte. The following query return all nitrate data (storet ID = A-029) for Alameda county Watere District. 
+Provide the storet ID to query for a specific analyte. The following query return all nitrate data (storet ID = A-029) for Alameda county Water District. 
 ```{r}
-alameda_nitrate <- get_data(psid = "110001", storet = "A-029")
+alameda_nitrate <- get_data(psid = "0110001", storet = "A-029")
 ```
 
 We can plot these results with `ggplot` as follows:
@@ -72,7 +72,7 @@ alameda_nitrate %>%
 To query a specific date range provide a `start_date` and/or `end_date` argument(s) in **YYYY-MM-DD** format.  
 
 ```{r}
-alameda_09_2018 <- get_data(psid = "110001", start_date = "2018-09-01", end_date = "2018-09-30")
+alameda_09_2018 <- get_data(psid = "0110001", start_date = "2018-09-01", end_date = "2018-09-30")
 ```
 
 
