@@ -1,0 +1,34 @@
+title: sdwisard
+url: https://CAopenwater.github.io/cvpiaFlow/
+template:
+  params:
+    bootswatch: yeti
+home:
+  links:
+  - text: California Public Water Supply System Search
+    href: https://sdwis.waterboards.ca.gov/PDWW/
+  - text: The California Water Data Challenge
+    href: https://waterchallenge.data.ca.gov/
+reference:
+- title: Query Data
+  desc: Functions to query SDWIS water quality data
+  contents:
+  - get_data
+- title: Query Helpers
+  desc: Functions to assist in developing data queries
+  contents:
+  - get_water_system
+  - get_analyte_summary
+  - get_storet_id
+navbar:
+  type: inverse
+  left:
+    - text: 'Reference'
+      href: reference/index.html
+    - text: 'Articles'
+      menu:
+        - text: "Getting Started"
+          href: articles/getting-started.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/CAopenwater/sdwisard
