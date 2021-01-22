@@ -98,7 +98,7 @@ with their date range and number of records" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/CAopenwater/sdwisard">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -125,7 +125,7 @@ with their date range and number of records" />
 with their date range and number of records</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_analyte_summary</span>(<span class='kw'>psid</span>)</pre>
+    <pre class="usage"><span class='fu'>get_analyte_summary</span><span class='op'>(</span><span class='va'>psid</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,8 +138,15 @@ with their date range and number of records</p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_analyte_summary</span>(<span class='st'>"103039"</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error: The psid 103039 is invalid.</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>get_analyte_summary</span><span class='op'>(</span><span class='st'>"0105009"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 6</span><span>
+#&gt;   psid    storet analyte              start_date end_date       n
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #949494;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0105009 00618  NITRATE (AS N)       2020-03-18 2020-03-18     1
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 0105009 00620  NITRITE (AS N)       2020-03-18 2020-03-18     1
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 0105009 01002  ARSENIC              2015-03-24 2015-09-22     3
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 0105009 01032  CHROMIUM, HEXAVALENT 2015-03-24 2015-09-23     3
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 0105009 71850  NITRATE (AS NO3)     2015-03-24 2015-06-08     2</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

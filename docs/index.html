@@ -61,7 +61,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/CAopenwater/sdwisard">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -91,17 +91,32 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>This package is not yet on CRAN. Download it from Github as follows:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(repo = <span class="st">"CAopenwater/sdwisard"</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"CAopenwater/sdwisard"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="basic-usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-usage" class="anchor"></a>Basic Usage</h2>
 <p>The heart of this package is the <code><a href="reference/get_data.html">get_data()</a></code> function. To obtain data, simply supply a PSID (public water system ID number).</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">sdwisard</span>::<span class="fu"><a href="reference/get_data.html">get_data</a></span>(<span class="kw">psid</span>) 
-</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">sdwisard</span><span class="fu">::</span><span class="fu"><a href="reference/get_data.html">get_data</a></span><span class="op">(</span><span class="va">psid</span><span class="op">)</span> </code></pre></div>
+</div>
+<div id="quickstart" class="section level2">
+<h2 class="hasAnchor">
+<a href="#quickstart" class="anchor"></a>Quickstart</h2>
+<p>Supply a PSID and storet number to get data. Here, we get nitrate data in Alameda County Water District.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">alameda_nitrate</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_data.html">get_data</a></span><span class="op">(</span>psid <span class="op">=</span> <span class="st">"0110001"</span>, storet <span class="op">=</span> <span class="st">"A-029"</span><span class="op">)</span>
+
+<span class="va">alameda_nitrate</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">SAMP_DATE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">date</span>, <span class="va">FINDING</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_smooth</span><span class="op">(</span>se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"NITRATE + NITRITE (AS N) at Alameda County Water District"</span>,
+       y <span class="op">=</span> <span class="st">"(MG/L)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/nitrate.png"></p>
 <p>For more details see our <a href="https://CAopenwater.github.io/sdwisard/articles/getting-started.html">Getting Started</a> article.</p>
 </div>
 </div>

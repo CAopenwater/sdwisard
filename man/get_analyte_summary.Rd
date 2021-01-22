@@ -14,5 +14,5 @@ For a given water system ID (psid), returns all the analytes
 with their date range and number of records
 }
 \examples{
-get_analyte_summary("103039")
+get_analyte_summary("0105009")
 }

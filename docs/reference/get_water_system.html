@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Get Water System — get_water_system" />
-<meta property="og:description" content="Enable user to discover water system ID when supplied a zipcode or county of interest" />
+<meta property="og:description" content="Enable user to discover water system ID when supplied a county of interest" />
 
 
 
@@ -97,7 +97,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/CAopenwater/sdwisard">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,10 +120,10 @@
     </div>
 
     <div class="ref-description">
-    <p>Enable user to discover water system ID when supplied a zipcode or county of interest</p>
+    <p>Enable user to discover water system ID when supplied a county of interest</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_water_system</span>(county = <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>get_water_system</span><span class='op'>(</span>county <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -132,17 +132,25 @@
       <th>county</th>
       <td><p>county</p></td>
     </tr>
-    <tr>
-      <th>zipcode</th>
-      <td><p>zipcode</p></td>
-    </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_water_system</span>(zipcode = <span class='st'>"90201"</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in get_water_system(zipcode = "90201"): unused argument (zipcode = "90201")</span></div><div class='input'><span class='fu'>get_water_system</span>(county = <span class='st'>"D"</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error: Couldn't find D but did you mean one of the following: ALAMEDA, ALPINE, AMADOR, BUTTE, CALAVERAS, COLUSA, CONTRA COSTA, DEL NORTE, EL DORADO, FRESNO, GLENN, HUMBOLDT, IMPERIAL, INYO, KERN, KINGS, LAKE, LASSEN, LOS ANGELES, MADERA, MARIN, MARIPOSA, MENDOCINO, MERCED, MODOC, MONO, SAN BERNARDINO, MONTEREY, NAPA, NEVADA, ORANGE, PLACER, PLUMAS, RIVERSIDE, SACRAMENTO, SAN BENITO, SAN DIEGO, SAN FRANCISCO, SAN JOAQUIN, SAN LUIS OBISPO, SAN MATEO, SANTA BARBARA, SANTA CLARA, SANTA CRUZ, SHASTA, SIERRA, SISKIYOU, SOLANO, SONOMA, STANISLAUS, SUTTER, TEHAMA, TRINITY, TULARE, TUOLUMNE, VENTURA, YOLO, YUBA?</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>get_water_system</span><span class='op'>(</span>county <span class='op'>=</span> <span class='st'>"ALAMEDA"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 24 x 3</span><span>
+#&gt;    psid    water_system_name                    county 
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 0103040 NORRIS CANYON PROPERTY OWNERS ASSN   ALAMEDA
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 0103041 TRAILER HAVEN MOBILE HOME PARK       ALAMEDA
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 0105002 RIVERS END MARINA                    ALAMEDA
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 0105003 CEMEX/ELIOT PLANT                    ALAMEDA
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 0105008 CASTLEWOOD DOMESTIC WATER SYSTEM     ALAMEDA
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 0105009 MOUNTAIN HOUSE SCHOOL                ALAMEDA
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 0105010 EBRPD - DEL VALLE REGIONAL PARK      ALAMEDA
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 0105012 EBRPD - SUNOL REGIONAL WILDERNESS    ALAMEDA
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 0105013 EBRPD - REDWOOD SPRING REGIONAL PARK ALAMEDA
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 0105016 MOUNTAIN HOUSE BAR                   ALAMEDA
+#&gt; </span><span style='color: #949494;'># … with 14 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

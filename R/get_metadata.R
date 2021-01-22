@@ -1,10 +1,8 @@
 #' Get Water System
-#' @description Enable user to discover water system ID when supplied a zipcode or county of interest
-#' @param zipcode zipcode
+#' @description Enable user to discover water system ID when supplied a county of interest
 #' @param county county
 #' @examples
-#' get_water_system(zipcode = "90201")
-#' get_water_system(county = "D")
+#' get_water_system(county = "ALAMEDA")
 #' @export
 get_water_system <- function(county = NULL) {
 
@@ -43,7 +41,7 @@ get_water_system <- function(county = NULL) {
 #' with their date range and number of records
 #' @param psid water system id
 #' @examples
-#' get_analyte_summary("103039")
+#' get_analyte_summary("0105009")
 #' @export
 get_analyte_summary <- function(psid) {
 

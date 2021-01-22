@@ -41,6 +41,6 @@ alameda_nitrate %>%
   theme_minimal()
 ```
 
-![](nitrate.png)
+![](man/figures/nitrate.png)
 
 For more details see our [Getting Started](https://CAopenwater.github.io/sdwisard/articles/getting-started.html) article.

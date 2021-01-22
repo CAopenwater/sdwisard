@@ -56,7 +56,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/CAopenwater/sdwisard">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -70,7 +70,7 @@
 
       
 
-      </header><script src="getting-started_files/header-attrs-2.3/header-attrs.js"></script><div class="row">
+      </header><script src="getting-started_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
@@ -83,21 +83,19 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://caopenwater.github.io/sdwisard">sdwisard</a></span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org">dplyr</a></span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://caopenwater.github.io/sdwisard/">sdwisard</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></code></pre></div>
 <p>Make sure the package is installed. See <a href="https://caopenwater.github.io/sdwisard/">installation instructions here</a>.</p>
 <div id="basic-query" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-query" class="anchor"></a>Basic Query</h2>
 <p>The <strong>PSID</strong> (public water system ID number) of a water system is the only mandatory argument to <code><a href="../reference/get_data.html">get_data()</a></code>. Use the PSID of a system to get all the water quality data for that system.</p>
 <p>For example, Alameda County Water District is PSID 0110001:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">alameda_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span>(psid = <span class="st">"0110001"</span>)
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span>(<span class="kw">alameda_all</span>)
-</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">alameda_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span><span class="op">(</span>psid <span class="op">=</span> <span class="st">"0110001"</span><span class="op">)</span>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">alameda_all</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 22,107
 ## Columns: 55
 ## $ PWSID                                             &lt;chr&gt; "110001", "110001",…
@@ -170,9 +168,8 @@
 <code><a href="../reference/get_storet_id.html">get_storet_id()</a></code> - Find storet id with common chemical name</li>
 </ul>
 <p>Supply a county to <code><a href="../reference/get_water_system.html">get_water_system()</a></code> to return PSIDs and water system names within that county.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="../reference/get_water_system.html">get_water_system</a></span>(county = <span class="st">"Alameda"</span>)
-</pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_water_system.html">get_water_system</a></span><span class="op">(</span>county <span class="op">=</span> <span class="st">"Alameda"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 24 x 3
 ##    psid    water_system_name                    county 
 ##    &lt;chr&gt;   &lt;chr&gt;                                &lt;chr&gt;  
@@ -188,9 +185,8 @@
 ## 10 0105016 MOUNTAIN HOUSE BAR                   ALAMEDA
 ## # … with 14 more rows</code></pre>
 <p>Supply a PSID to <code><a href="../reference/get_analyte_summary.html">get_analyte_summary()</a></code> to view a summary of a water system’s available analyte data.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="../reference/get_analyte_summary.html">get_analyte_summary</a></span>(psid = <span class="st">"0110001"</span>) 
-</pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_analyte_summary.html">get_analyte_summary</a></span><span class="op">(</span>psid <span class="op">=</span> <span class="st">"0110001"</span><span class="op">)</span> </code></pre></div>
 <pre><code>## # A tibble: 209 x 6
 ##    psid    storet analyte                     start_date end_date       n
 ##    &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;                       &lt;date&gt;     &lt;date&gt;     &lt;int&gt;
@@ -206,10 +202,9 @@
 ## 10 0110001 00612  AMMONIA (NH3-N)             2020-05-11 2020-05-11     1
 ## # … with 199 more rows</code></pre>
 <p>Use the function <code>get_storet_id</code> to search for storet IDs by common names of an analytes.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="kw">nitrate_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_storet_id.html">get_storet_id</a></span>(<span class="st">"nitrate"</span>)
-<span class="kw">nitrate_ids</span>
-</pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">nitrate_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_storet_id.html">get_storet_id</a></span><span class="op">(</span><span class="st">"nitrate"</span><span class="op">)</span>
+<span class="va">nitrate_ids</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   storet analyte                 
 ##   &lt;chr&gt;  &lt;chr&gt;                   
@@ -217,33 +212,29 @@
 ## 2 71850  NITRATE (AS NO3)        
 ## 3 A-029  NITRATE + NITRITE (AS N)</code></pre>
 <p>Provide the storet ID to query for a specific analyte. The following query return all nitrate data (storet ID = A-029) for Alameda county Water District.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="kw">alameda_nitrate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span>(psid = <span class="st">"0110001"</span>, storet = <span class="st">"A-029"</span>)
-</pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">alameda_nitrate</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span><span class="op">(</span>psid <span class="op">=</span> <span class="st">"0110001"</span>, storet <span class="op">=</span> <span class="st">"A-029"</span><span class="op">)</span></code></pre></div>
 <p>We can plot these results with <code>ggplot</code> as follows:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="kw">alameda_nitrate</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(date = <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="kw">SAMP_DATE</span>)) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">date</span>, <span class="kw">FINDING</span>)) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span>(se = <span class="fl">FALSE</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(title = <span class="st">"NITRATE + NITRITE (AS N) at Alameda County Water District"</span>,
-       y = <span class="st">"(MG/L)"</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>()
-</pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">alameda_nitrate</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">SAMP_DATE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">FINDING</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"NITRATE + NITRITE (AS N) at Alameda County Water District"</span>,
+       y <span class="op">=</span> <span class="st">"(MG/L)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="getting-started_files/figure-html/unnamed-chunk-7-1.png" width="100%"></p>
 <p>To query a specific date range provide a <code>start_date</code> and/or <code>end_date</code> argument(s) in <strong>YYYY-MM-DD</strong> format.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="kw">alameda_09_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span>(psid = <span class="st">"0110001"</span>, start_date = <span class="st">"2018-09-01"</span>, end_date = <span class="st">"2018-09-30"</span>)
-</pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">alameda_09_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span><span class="op">(</span>psid <span class="op">=</span> <span class="st">"0110001"</span>, start_date <span class="op">=</span> <span class="st">"2018-09-01"</span>, end_date <span class="op">=</span> <span class="st">"2018-09-30"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="built-in-package-objects" class="section level2">
 <h2 class="hasAnchor">
 <a href="#built-in-package-objects" class="anchor"></a>Built-in package objects</h2>
 <p>Full tables of metadata are also available:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="kw">water_systems</span>
-</pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">water_systems</span></code></pre></div>
 <pre><code>## # A tibble: 7,443 x 3
 ##    psid    water_system_name                    county 
 ##    &lt;chr&gt;   &lt;chr&gt;                                &lt;chr&gt;  
@@ -258,9 +249,8 @@
 ##  9 0105013 EBRPD - REDWOOD SPRING REGIONAL PARK ALAMEDA
 ## 10 0105016 MOUNTAIN HOUSE BAR                   ALAMEDA
 ## # … with 7,433 more rows</code></pre>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="kw">psid_analyte</span>
-</pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">psid_analyte</span></code></pre></div>
 <pre><code>## # A tibble: 562,977 x 6
 ##    psid    storet analyte                     start_date end_date       n
 ##    &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;                       &lt;date&gt;     &lt;date&gt;     &lt;int&gt;
@@ -275,9 +265,8 @@
 ##  9 0103040 00403  PH, LABORATORY              2020-05-19 2020-05-19     1
 ## 10 0103040 00410  ALKALINITY (TOTAL) AS CACO3 2020-05-19 2020-05-19     1
 ## # … with 562,967 more rows</code></pre>
-<div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="kw">analytes</span>
-</pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">analytes</span></code></pre></div>
 <pre><code>## # A tibble: 441 x 2
 ##    storet analyte                    
 ##    &lt;chr&gt;  &lt;chr&gt;                      
